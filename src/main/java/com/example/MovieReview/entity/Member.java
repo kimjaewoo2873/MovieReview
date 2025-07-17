@@ -1,5 +1,6 @@
 package com.example.MovieReview.entity;
 
+import com.example.MovieReview.dto.MemberForm;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,4 +20,8 @@ public class Member {
 
     @Column
     private String password;
+
+    public MemberForm createDto(Member target) {
+        return new MemberForm(target.getId(), target.name, target.getPassword());
+    }
 }

@@ -27,4 +27,5 @@ public class Movie {
     @Column
     private String imageUrl;
 
+
 }

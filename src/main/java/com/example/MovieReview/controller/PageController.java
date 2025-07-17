@@ -2,6 +2,7 @@ package com.example.MovieReview.controller;
 
 import com.example.MovieReview.dto.MemberForm;
 import com.example.MovieReview.dto.MovieForm;
+import com.example.MovieReview.entity.Member;
 import com.example.MovieReview.service.MemberService;
 import com.example.MovieReview.service.MovieService;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -29,15 +31,18 @@ public class PageController {
 
     @PostMapping("/golist") // 로그인 후, 리스트 가져올거임
     public String index(MemberForm memberForm, Model model) {
-        memberService.createMember(memberForm);
+        log.info(memberForm.toString());
+        Member member = memberService.createMember(memberForm);
         List<MovieForm> movieForms = movieService.getList();
         model.addAttribute("MovieDtos", movieForms);
-        return "home/list";
+        return "redirect:/getlist/" + member.getId();
     }
 
-    @GetMapping("/getlist")
-    public String originlist(Model model) {
+    @GetMapping("/getlist/{id}")
+    public String originList(@PathVariable Long id, Model model) {
         List<MovieForm> movieForms = movieService.getList();
+        MemberForm memberForm = memberService.findId(id);
+        model.addAttribute("MemberDto", memberForm);
         model.addAttribute("MovieDtos", movieForms);
         return "home/list";
     }

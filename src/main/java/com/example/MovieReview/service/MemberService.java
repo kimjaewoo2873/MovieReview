@@ -13,11 +13,20 @@ public class MemberService {
     @Autowired
     MemberRepository memberRepository;
 
-    public void createMember(MemberForm memberForm) {
+    public Member createMember(MemberForm memberForm) {
         log.info(memberForm.toString());
         Member member = memberForm.toEntity();
         log.info(member.toString());
         Member saved = memberRepository.save(member);
+        log.info("Saved Member ID: {}", saved.getId());
         log.info(saved.toString());
+        return saved;
+    }
+
+    public MemberForm findId(Long id) {
+        Member target = memberRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("일치하는" +
+                "id를 못 찾음"));
+        MemberForm memberForm = target.createDto(target); // dto 변환
+        return memberForm;
     }
 }
