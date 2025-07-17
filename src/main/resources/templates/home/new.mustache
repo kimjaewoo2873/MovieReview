@@ -2,7 +2,7 @@
 <div class="bg-light p-3 rounded shadow-sm mb-4">
     <h2 class="text-left text-dark m-0">🎥 영화 등록</h2>
 </div>
-{{#MemberForm}}
+{{#MemberId}}
 <form class="container mt-4" action="/movie/plus/{{id}}" method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label class="form-label">제목</label>
@@ -19,5 +19,5 @@
     <button type="submit" class="btn btn-primary">등록</button>
     <a href="/getlist/{{id}}">돌아가기</a>
 </form>
-{{/MemberForm}}
+{{/MemberId}}
 {{>layouts/footer}}

@@ -33,8 +33,6 @@ public class PageController {
     public String index(MemberForm memberForm, Model model) {
         log.info(memberForm.toString());
         Member member = memberService.createMember(memberForm);
-        List<MovieForm> movieForms = movieService.getList();
-        model.addAttribute("MovieDtos", movieForms);
         return "redirect:/getlist/" + member.getId();
     }
 

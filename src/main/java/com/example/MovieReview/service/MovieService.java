@@ -45,9 +45,13 @@ public class MovieService {
         //log.info(movieForm.toString());
         // dto -> entity -> repository dto를 엔티티로 변환해야하는데, 엔티티에는 멤버 객체,
         // 지금 dto를 엔티티로 바꾸는데 member객체가 없음
+        log.info("멤버 아이디=" +String.valueOf(id));
         Member target = memberRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("id를 찾지 못함"));
+        log.info("멤버 타겟=" + target.toString());
+
         Movie movie = movieForm.toEntity(target); // imageUrl 포함해서 Entity 변환
-        //log.info(movie.toString());
+        log.info("movieForm " + movieForm.toString());
+        log.info("movie 엔터티 변환" + movie.toString());
 
         Movie saved = movieRepository.save(movie);
         //log.info(saved.toString());
@@ -60,9 +64,9 @@ public class MovieService {
         List<MovieForm> dtos = new ArrayList<MovieForm>();
         for(int i=0;i<entityList.size();i++) {
             Movie entity = entityList.get(i);
-            log.info(entity.toString());
+            //log.info(entity.toString());
             MovieForm movieDto = MovieForm.createDto(entity);
-            log.info(movieDto.toString());
+            //log.info(movieDto.toString());
             dtos.add(movieDto);
         }
         return dtos;

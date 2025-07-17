@@ -26,14 +26,16 @@ public class MovieController {
 
     @GetMapping("/movie/new/{id}")
     public String pluspage(@PathVariable Long id, Model model) {
+        log.info("아이디=" + String.valueOf(id));
         MemberForm memberForm = memberService.findId(id);
-        model.addAttribute("MemberForm", memberForm);
+        log.info(memberForm.toString());
+        model.addAttribute("MemberId", memberForm.getId());
         return "home/new";
     }
 
     @PostMapping("/movie/plus/{id}")
     public String plusMovie(MovieForm movieForm, @PathVariable Long id, @RequestParam("imageFile")MultipartFile imageFile, Model model) {
-        Movie movie = movieService.plusMovie(movieForm, id, imageFile);
+        Movie movie = movieService.plusMovie(movieForm, id, imageFile); // 이 아이디는 멤버의 아이디여야함
         //log.info(movie.toString());
         List<MovieForm> movieForms = movieService.getList();
         model.addAttribute("MovieDtos", movieForms);

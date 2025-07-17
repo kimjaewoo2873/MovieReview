@@ -21,13 +21,11 @@
             <td class="align-middle">{{memberName}}</td>
         </tr>
     {{/MovieDtos}}
-
     </tbody>
 </table>
 {{#MemberDto}}
 <div class="text-center mt-3">
     <form action="/movie/new/{{id}}" method="get">
-        <input name="id" type="hidden" value="{{id}}">
         <button type="submit" class="btn btn-primary">추가</button>
     </form>
 </div>

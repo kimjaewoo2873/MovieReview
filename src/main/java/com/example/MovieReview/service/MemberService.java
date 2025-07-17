@@ -14,9 +14,7 @@ public class MemberService {
     MemberRepository memberRepository;
 
     public Member createMember(MemberForm memberForm) {
-        log.info(memberForm.toString());
         Member member = memberForm.toEntity();
-        log.info(member.toString());
         Member saved = memberRepository.save(member);
         log.info("Saved Member ID: {}", saved.getId());
         log.info(saved.toString());

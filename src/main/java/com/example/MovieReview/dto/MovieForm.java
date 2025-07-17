@@ -3,12 +3,14 @@ package com.example.MovieReview.dto;
 import com.example.MovieReview.entity.Member;
 import com.example.MovieReview.entity.Movie;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Slf4j
 public class MovieForm {
     private Long id;
     private Long memberId;
@@ -22,7 +24,8 @@ public class MovieForm {
     }
 
     public Movie toEntity(Member member) {
-        return new Movie(this.id, member, this.title, this.score, this.imageUrl);
+        log.info("현재 추가된 무비 this.id = " + this.id);
+        return new Movie(null, member, this.title, this.score, this.imageUrl);
     }
 
 }
