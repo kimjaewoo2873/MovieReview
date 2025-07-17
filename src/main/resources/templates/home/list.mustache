@@ -1,3 +1,30 @@
 {{>layouts/header}}
-<h3>Hi</h3>
+<h2>영화 목록</h2>
+
+<table class="table">
+    <thead class="table-dark">
+    <tr>
+        <th>제목</th>
+        <th>평점</th>
+        <th>작성자</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#MovieDtos}} <!-- 각 영화 DTO 반복 -->
+    <tr>
+        <td>{{title}}</td>
+        <td>{{score}}</td>
+        <td>{{memberName}}</td>
+    </tr>
+    {{/MovieDtos}}
+    {{^MovieDtos}} <!-- 리스트가 비어 있을 경우 -->
+    <tr>
+        <td colspan="4">등록된 영화가 없습니다.</td>
+    </tr>
+    {{/MovieDtos}}
+    </tbody>
+</table>
+<form action="/movie/new" method="get">
+    <button type="submit" class="btn btn-primary">추가</button>
+</form>
 {{>layouts/footer}}
