@@ -26,9 +26,17 @@ public class PageController {
     public String loginHome() {
         return "home/loginpage";
     }
+
     @PostMapping("/golist") // 로그인 후, 리스트 가져올거임
     public String index(MemberForm memberForm, Model model) {
         memberService.createMember(memberForm);
+        List<MovieForm> movieForms = movieService.getList();
+        model.addAttribute("MovieDtos", movieForms);
+        return "home/list";
+    }
+
+    @GetMapping("/getlist")
+    public String originlist(Model model) {
         List<MovieForm> movieForms = movieService.getList();
         model.addAttribute("MovieDtos", movieForms);
         return "home/list";

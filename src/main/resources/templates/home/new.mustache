@@ -1,13 +1,15 @@
 {{>layouts/header}}
-
-<form class="container" action="/movie/plus" method="post">
+<div class="bg-light p-3 rounded shadow-sm mb-4">
+    <h2 class="text-left text-dark m-0">🎥 영화 등록</h2>
+</div>
+<form class="container mt-4" action="/movie/plus" method="post" >
     <div class="mb-3">
         <label class="form-label">제목</label>
-        <input type="text" class="form-control" name="title">
+        <input type="text" class="form-control" name="title" style="width: 300px;">
     </div>
     <div class="mb-3">
         <label class="form-label">평점</label>
-        <textarea class="form-control" rows="3" name="score"></textarea>
+        <input class="form-control" name="score" style="width: 60px;" maxlength="4">
     </div>
     <button type="submit" class="btn btn-primary">등록</button>
     <a href="/getlist">돌아가기</a>

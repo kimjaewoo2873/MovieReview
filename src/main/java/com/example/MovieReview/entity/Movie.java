@@ -23,4 +23,8 @@ public class Movie {
 
     @Column
     private String score;
+
+    @Column
+    private String imageUrl;
+
 }

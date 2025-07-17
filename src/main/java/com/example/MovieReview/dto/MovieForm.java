@@ -15,12 +15,13 @@ public class MovieForm {
     private String title;
     private String score;
     private String memberName;
+    private String imageUrl;
 
     public static MovieForm createDto(Movie m) {
-        return new MovieForm(m.getId(), m.getMemberId(),m.getTitle(), m.getScore(), m.getMemberId().getName());
+        return new MovieForm(m.getId(), m.getMemberId(),m.getTitle(), m.getScore(), m.getMemberId().getName(), m.getImageUrl());
     }
 
     public Movie toEntity() {
-        return  new Movie(this.id, this.memberId, this.title, this.score);
+        return  new Movie(this.id, this.memberId, this.title, this.score, this.imageUrl);
     }
 }
