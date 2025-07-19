@@ -15,7 +15,7 @@ public class MovieForm {
     private Long id;
     private Long memberId;
     private String title;
-    private String score;
+    private double score;
     private String memberName;
     private String imageUrl;
 

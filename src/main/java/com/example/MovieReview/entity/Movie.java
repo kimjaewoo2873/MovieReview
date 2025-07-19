@@ -22,7 +22,7 @@ public class Movie {
     private String title;
 
     @Column
-    private String score;
+    private double score;
 
     @Column
     private String imageUrl;
