@@ -39,7 +39,7 @@ public class MovieController {
         //log.info(movie.toString());
         List<MovieForm> movieForms = movieService.getList();
         model.addAttribute("MovieDtos", movieForms);
-        return "home/list";
+        return "redirect:/getlist/" + id;
     }
 
 }
