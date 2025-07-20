@@ -1,0 +1,27 @@
+{{>layouts/header}}
+{{#InfoMovie}}
+<h3>info</h3>
+<div class="container mt-5">
+    <div class="card mx-auto shadow" style="max-width: 800px;">
+        <div class="row g-0">
+            <div class="col-md-5">
+                <img src="{{imageUrl}}" alt="{{title}}" class="img-fluid rounded-start" style="height: 100%; object-fit: cover;">
+            </div>
+            <div class="col-md-7">
+                <div class="card-body">
+                    <h2 class="card-title text-primary fw-bold">{{title}}</h2>
+                    <p class="card-text fs-5 mb-2">⭐ <strong>{{score}}</strong></p>
+                    <p class="card-text"><strong>작성자:</strong> {{memberName}}</p>
+                    <hr>
+                    <p class="card-text">
+                         <!-- 영화 줄거리나 상세 설명 -->
+                        hello
+                    </p>
+                    <a href="/getlist/{{id}}" class="btn btn-outline-secondary mt-3">← 목록으로 돌아가기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/InfoMovie}}
+{{>layouts/footer}}

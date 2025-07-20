@@ -45,4 +45,10 @@ public class PageController {
         return "home/list";
     }
 
+    @GetMapping("/home/movieinfo/{id}")
+    public String viewInfo(@PathVariable Long id, Model model) {
+        MovieForm dto = movieService.findId(id);
+        model.addAttribute("InfoMovie", dto);
+        return "home/movieinfo";
+    }
 }

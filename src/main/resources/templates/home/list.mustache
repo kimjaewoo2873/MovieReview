@@ -12,7 +12,7 @@
     </thead>
     <tbody>
     {{#MovieDtos}}
-        <tr>
+        <tr onclick="location.href='/home/movieinfo/{{id}}'" style="cursor:pointer;">
             <td class="align-middle">{{title}}</td>
             <td>
                 <img src="{{imageUrl}}" alt="{{title}}" class="img-fluid" style="max-height: 180px;">

@@ -71,4 +71,11 @@ public class MovieService {
         }
         return dtos;
     }
+
+    public MovieForm findId(Long id) {
+        Movie target = movieRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("ID에 맞는 영화를 " +
+                "찾을 수 없음"));
+        MovieForm movieForm = MovieForm.createDto(target);
+        return movieForm;
+    }
 }
