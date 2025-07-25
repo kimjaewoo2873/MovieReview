@@ -1,4 +1,5 @@
 {{>layouts/header}}
+{{#MemberDto}}
 <h1 class="display-5 text-primary fw-bold text-center">🎬 영화 목록</h1>
 
 <table class="table table-bordered align-middle text-center">
@@ -23,7 +24,7 @@
     {{/MovieDtos}}
     </tbody>
 </table>
-{{#MemberDto}}
+
 <div class="text-center mt-3">
     <form action="/movie/new/{{id}}" method="get">
         <button type="submit" class="btn btn-primary">추가</button>

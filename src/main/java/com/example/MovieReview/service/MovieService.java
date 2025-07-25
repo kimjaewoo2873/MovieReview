@@ -24,18 +24,45 @@ public class MovieService {
     @Autowired
     MemberRepository memberRepository;
 
+    // 중복 파일 이름 번호 붙히기
+    private String getUniqueFileName(String uploadDir, String originalFilename) {
+        File file = new File(uploadDir + originalFilename);
+        if (!file.exists()) {
+            return originalFilename; // 중복 없으면 원본 파일명 반환
+        }
+
+        String name = originalFilename.substring(0, originalFilename.lastIndexOf("."));
+        String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+
+        int count = 1;
+        String newFilename;
+
+        while (true) {
+            newFilename = name + "(" + count + ")" + extension;
+            file = new File(uploadDir + newFilename);
+            if (!file.exists()) {
+                break; // 존재하지 않는 파일명 발견 시 종료
+            }
+        }
+        return newFilename;
+    }
+
     public Movie plusMovie(MovieForm movieForm, Long id, MultipartFile imageFile) {
         if (!imageFile.isEmpty()) {
             String uploadDir = "c:/images/";
             String originalFilename = imageFile.getOriginalFilename(); // 원본 파일 이름
-            String filePath = uploadDir + originalFilename; // 로컬에 저정 할 경로
+            String savedName = getUniqueFileName(uploadDir, originalFilename);
+
+            // 저장 경로에 파일 객체 생성
+            File destFile = new File(uploadDir + savedName);
             try {
-                // 저장 경로에 파일 객체 생성
-                File destFile = new File(filePath);
+                if(!destFile.getParentFile().exists()) {
+                    destFile.getParentFile().mkdirs();
+                }
                 // 업로드된 파일을 지정한 경로에 저장
                 imageFile.transferTo(destFile);
                 // 웹에서 접근할 이미지 URL 경로 생성 (예: /images/myphoto.jpg)
-                String imageUrl = "/images/" + originalFilename;
+                String imageUrl = "/images/" + savedName;
                 // movieForm 객체에 이미지 URL 세팅
                 movieForm.setImageUrl(imageUrl);
             } catch (IOException e) {
