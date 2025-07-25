@@ -35,7 +35,11 @@ public class MovieController {
 
     @PostMapping("/movie/plus/{id}")
     public String plusMovie(MovieForm movieForm, @PathVariable Long id, @RequestParam("imageFile")MultipartFile imageFile, Model model) {
-        Movie movie = movieService.plusMovie(movieForm, id, imageFile); // 이 아이디는 멤버의 아이디여야함
+        log.info("plusMovie 호출 전");
+        Movie movie = movieService.plusMovie(movieForm, id, imageFile);
+        log.info("plusMovie 호출 후: {}", movie);
+
+//        Movie movie = movieService.plusMovie(movieForm, id, imageFile); // 이 아이디는 멤버의 아이디여야함
         //log.info(movie.toString());
         List<MovieForm> movieForms = movieService.getList();
         model.addAttribute("MovieDtos", movieForms);

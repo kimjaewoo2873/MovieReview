@@ -43,6 +43,7 @@ public class MovieService {
             if (!file.exists()) {
                 break; // 존재하지 않는 파일명 발견 시 종료
             }
+            count++;
         }
         return newFilename;
     }

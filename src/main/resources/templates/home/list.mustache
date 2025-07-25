@@ -1,5 +1,4 @@
 {{>layouts/header}}
-{{#MemberDto}}
 <h1 class="display-5 text-primary fw-bold text-center">🎬 영화 목록</h1>
 
 <table class="table table-bordered align-middle text-center">
@@ -13,8 +12,8 @@
     </thead>
     <tbody>
     {{#MovieDtos}}
-        <tr onclick="location.href='/home/movieinfo/{{id}}'" style="cursor:pointer;">
-            <td class="align-middle">{{title}}</td>
+        <tr onclick="location.href='/home/infopage/{{id}}?viewerId={{MemberDto.id}}'" style="cursor:pointer;">
+        <td class="align-middle">{{title}}</td>
             <td>
                 <img src="{{imageUrl}}" alt="{{title}}" class="img-fluid" style="max-height: 180px;">
             </td>
@@ -24,7 +23,7 @@
     {{/MovieDtos}}
     </tbody>
 </table>
-
+{{#MemberDto}}
 <div class="text-center mt-3">
     <form action="/movie/new/{{id}}" method="get">
         <button type="submit" class="btn btn-primary">추가</button>

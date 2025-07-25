@@ -25,6 +25,8 @@ public class MemberService {
         Member target = memberRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("일치하는" +
                 "id를 못 찾음"));
         MemberForm memberForm = target.createDto(target); // dto 변환
+        log.info("target: " +target.toString());
+        log.info("memberForm: " + memberForm.toString());
         return memberForm;
     }
 }
