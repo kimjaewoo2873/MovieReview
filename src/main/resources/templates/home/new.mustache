@@ -14,8 +14,36 @@
         <input class="form-control" name="score" style="width: 60px;" maxlength="4">
     </div>
     <div class="mb-3">
+        <label class="form-label">개봉일</label>
+        <input type="text" class="form-control" name="openDay" style="width: 300px;">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">등급</label>
+        <input type="text" class="form-control" name="limitAge" style="width: 300px;">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">장르</label>
+        <input type="text" class="form-control" name="genre" style="width: 300px;">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">국가</label>
+        <input type="text" class="form-control" name="country" style="width: 300px;">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">러닝타임</label>
+        <input type="text" class="form-control" name="runningTime" style="width: 300px;">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">배급</label>
+        <input type="text" class="form-control" name="company" style="width: 300px;">
+    </div>
+    <div class="mb-3">
         <label class="form-label">이미지 업로드</label>
         <input type="file" class="form-control" name="imageFile" accept="image/*" style="width: 300px;">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">상세 정보</label>
+        <textarea class="form-control" name="infoText" rows="5" style="width: 300px;"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">등록</button>
     <a href="/getlist/{{id}}">돌아가기</a>

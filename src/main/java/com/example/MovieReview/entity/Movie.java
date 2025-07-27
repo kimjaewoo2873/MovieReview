@@ -27,5 +27,25 @@ public class Movie {
     @Column
     private String imageUrl;
 
+    @Column
+    private String infoText;
+
+    @Column
+    private String openDay;
+
+    @Column
+    private String limitAge;
+
+    @Column
+    private String genre;
+
+    @Column
+    private String country;
+
+    @Column
+    private String runningTime;
+
+    @Column
+    private String company;
 
 }

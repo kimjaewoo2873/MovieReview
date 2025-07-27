@@ -18,14 +18,24 @@ public class MovieForm {
     private double score;
     private String memberName;
     private String imageUrl;
+    private String infoText;
+    private String openDay;
+    private String limitAge;
+    private String genre;
+    private String country;
+    private String runningTime;
+    private String company;
 
     public static MovieForm createDto(Movie m) {
-        return new MovieForm(m.getId(), m.getMemberId().getId(), m.getTitle(), m.getScore(), m.getMemberId().getName(), m.getImageUrl());
+        return new MovieForm(m.getId(), m.getMemberId().getId(), m.getTitle(), m.getScore(),
+                m.getMemberId().getName(), m.getImageUrl(), m.getInfoText(), m.getOpenDay(),
+                m.getLimitAge(), m.getGenre(), m.getCountry(), m.getRunningTime(),
+                m.getCompany());
     }
 
     public Movie toEntity(Member member) {
         log.info("현재 추가된 무비 this.id = " + this.id);
-        return new Movie(null, member, this.title, this.score, this.imageUrl);
+        return new Movie(null, member, this.title, this.score, this.imageUrl, this.infoText, this.openDay, this.limitAge,
+                this.genre, this.country, this.runningTime, this.company);
     }
-
 }

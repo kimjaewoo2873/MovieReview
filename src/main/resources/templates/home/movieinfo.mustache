@@ -1,6 +1,6 @@
 {{>layouts/header}}
 {{#InfoMovie}}
-<h3>info</h3>
+
 <div class="container mt-5">
     <div class="card mx-auto shadow" style="max-width: 800px;">
         <div class="row g-0">
@@ -9,13 +9,19 @@
             </div>
             <div class="col-md-7">
                 <div class="card-body">
-                    <h2 class="card-title text-primary fw-bold">{{title}}</h2>
-                    <p class="card-text fs-5 mb-2">⭐ <strong>{{score}}</strong></p>
-                    <p class="card-text"><strong>작성자:</strong> {{memberName}}</p>
+                    <h2 class="card-title text-primary fw-bold">
+                        {{title}} <span class="fs-5 text-warning">⭐ {{score}}</span>
+                    </h2>
+                    <p class="card-text"><strong>개봉</strong> {{openDay}}</p>
+                    <p class="card-text"><strong>등급:</strong> {{limitAge}}</p>
+                    <p class="card-text"><strong>장르:</strong> {{genre}}</p>
+                    <p class="card-text"><strong>국가:</strong> {{country}}</p>
+                    <p class="card-text"><strong>러닝타임:</strong> {{runningTime}}</p>
+                    <p class="card-text"><strong>배급:</strong> {{company}}</p>
                     <hr>
                     <p class="card-text">
                          <!-- 영화 줄거리나 상세 설명 -->
-                        hello
+                        {{infoText}}
                     </p>
 
                     <a href="/getlist/{{viewerId}}" class="btn btn-outline-secondary mt-3">← 목록으로 돌아가기</a>
