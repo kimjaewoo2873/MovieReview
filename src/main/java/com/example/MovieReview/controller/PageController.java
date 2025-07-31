@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -30,14 +31,35 @@ public class PageController {
         return "home/loginpage";
     }
 
-
-    @PostMapping("/golist") // 로그인 후, 리스트 가져올거임
-    public String index(MemberForm memberForm, Model model) {
+    @GetMapping("/signup")
+    public String signUpPage() {
+        return "home/signuppage";
+    }
+    @PostMapping("/golist/signup") // 회원가입 후, 리스트 가져올거임
+    public String index1(MemberForm memberForm, Model model, RedirectAttributes rttr) {
         Member check = memberService.checkLogin(memberForm.getName(), memberForm.getPassword());
-        //log.info(memberForm.toString());
+        if(check != null) {
+            log.info("회원가입 실패, 중복");
+            rttr.addFlashAttribute("msg", "이미 가입된 아이디입니다.");
+            return "redirect:/home/login";
+        }
+
         Member member = memberService.createMember(memberForm);
         memberForm.setId(member.getId());  // 저장된 ID를 memberForm에 세팅!
         return "redirect:/getlist/" + member.getId();
+    }
+
+    @PostMapping("/golist") // 로그인 후, 리스트 가져올거임
+    public String index2(MemberForm memberForm, Model model, RedirectAttributes rttr) {
+        Member check = memberService.checkLogin(memberForm.getName(), memberForm.getPassword());
+        if(check == null) {
+            log.info("로그인 실패");
+            rttr.addFlashAttribute("msg", "아이디, 비밀번호가 틀립니다.");
+            return "redirect:/home/login";
+        }
+        //log.info(memberForm.toString());
+        memberForm.setId(check.getId());  // 저장된 ID를 memberForm에 세팅!
+        return "redirect:/getlist/" + check.getId();
     }
 
     @GetMapping("/getlist/{id}")

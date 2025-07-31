@@ -32,6 +32,6 @@ public class MemberService {
 
     public Member checkLogin(String name, String password) {
         Member target = memberRepository.findUser(name, password);
-
+        return target;
     }
 }
