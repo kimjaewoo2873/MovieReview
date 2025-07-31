@@ -29,4 +29,9 @@ public class MemberService {
         log.info("memberForm: " + memberForm.toString());
         return memberForm;
     }
+
+    public Member checkLogin(String name, String password) {
+        Member target = memberRepository.findUser(name, password);
+
+    }
 }

@@ -30,9 +30,11 @@ public class PageController {
         return "home/loginpage";
     }
 
+
     @PostMapping("/golist") // 로그인 후, 리스트 가져올거임
     public String index(MemberForm memberForm, Model model) {
-        log.info(memberForm.toString());
+        Member check = memberService.checkLogin(memberForm.getName(), memberForm.getPassword());
+        //log.info(memberForm.toString());
         Member member = memberService.createMember(memberForm);
         memberForm.setId(member.getId());  // 저장된 ID를 memberForm에 세팅!
         return "redirect:/getlist/" + member.getId();
