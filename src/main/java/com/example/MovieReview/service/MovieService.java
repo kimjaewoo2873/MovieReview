@@ -1,5 +1,6 @@
 package com.example.MovieReview.service;
 
+import com.example.MovieReview.dto.MemberForm;
 import com.example.MovieReview.dto.MovieForm;
 import com.example.MovieReview.entity.Member;
 import com.example.MovieReview.entity.Movie;
@@ -87,23 +88,37 @@ public class MovieService {
         return saved;
     }
 
-    public List<MovieForm> getList() {
+    public List<MovieForm> getList(Long id) {
+        Member member = memberRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("" +
+                "ID를 찾을 수 없음"));
+
         List<Movie> entityList = movieRepository.findMovie();
         List<MovieForm> dtos = new ArrayList<MovieForm>();
         for(int i=0;i<entityList.size();i++) {
             Movie entity = entityList.get(i);
             //log.info(entity.toString());
-            MovieForm movieDto = MovieForm.createDto(entity);
+            MovieForm movieDto = MovieForm.createDto(entity,member);
             //log.info(movieDto.toString());
             dtos.add(movieDto);
         }
         return dtos;
     }
 
-    public MovieForm findId(Long id) {
+    public MovieForm findId(Long id, Long viewId) {
         Movie target = movieRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("ID에 맞는 영화를 " +
                 "찾을 수 없음"));
-        MovieForm movieForm = MovieForm.createDto(target);
+        Member member = memberRepository.findById(viewId).orElseThrow(()->new IllegalArgumentException("viewId 찾을수 없음"));
+        MovieForm movieForm = MovieForm.createDto(target, member);
         return movieForm;
+    }
+
+    public void findMemberWrite(MemberForm memberForm, List<MovieForm> movieForms) {
+        for(MovieForm movieForm : movieForms) {
+            if(memberForm.getName().equals(movieForm.getMemberName())) {
+                movieForm.setIsWrite(true);
+            } else {
+                movieForm.setIsWrite(false);
+            }
+        }
     }
 }

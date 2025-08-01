@@ -18,7 +18,14 @@
                 <img src="{{imageUrl}}" alt="{{title}}" class="img-fluid" style="max-height: 180px;">
             </td>
             <td class="align-middle">⭐{{score}}</td>
-            <td class="align-middle">{{memberName}}</td>
+        <td class="align-middle">
+            {{#isWrite}}
+                <a href="/?/{{MemberDto.id}}" class="text-decoration-none">{{memberName}}</a>
+            {{/isWrite}}
+            {{^isWrite}}
+                {{memberName}}
+            {{/isWrite}}
+        </td>
         </tr>
     {{/MovieDtos}}
     </tbody>

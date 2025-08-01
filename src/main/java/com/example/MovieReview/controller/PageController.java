@@ -35,6 +35,7 @@ public class PageController {
     public String signUpPage() {
         return "home/signuppage";
     }
+
     @PostMapping("/golist/signup") // 회원가입 후, 리스트 가져올거임
     public String index1(MemberForm memberForm, Model model, RedirectAttributes rttr) {
         Member check = memberService.checkLogin(memberForm.getName(), memberForm.getPassword());
@@ -62,21 +63,22 @@ public class PageController {
         return "redirect:/getlist/" + check.getId();
     }
 
-    @GetMapping("/getlist/{id}")
+    @GetMapping("/getlist/{id}") // 로그인 아이디로 리스트 가져오기, id는 member
     public String originList(@PathVariable Long id, Model model) {
-        List<MovieForm> movieForms = movieService.getList();
+        List<MovieForm> movieForms = movieService.getList(id);
         MemberForm memberForm = memberService.findId(id);
         model.addAttribute("MemberDto", memberForm);
         model.addAttribute("MovieDtos", movieForms);
+        movieService.findMemberWrite(memberForm, movieForms);
 
         return "home/list";
     }
 
-    @GetMapping("/home/infopage/{movieId}")
+    @GetMapping("/home/infopage/{movieId}") // 상세 목록 페이지
     public String showMovieDetail(@PathVariable Long movieId,
                                   @RequestParam(name = "viewerId", required = false) Long viewerId,
                                   Model model) {
-        MovieForm dto = movieService.findId(movieId); // 영화 찾기
+        MovieForm dto = movieService.findId(movieId, viewerId); // 영화 찾기
         log.info("영화 id : " + String.valueOf(dto.getMemberId()));
         log.info("viewerId : " + viewerId);
         model.addAttribute("InfoMovie", dto);

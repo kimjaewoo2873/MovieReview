@@ -41,7 +41,7 @@ public class MovieController {
 
 //        Movie movie = movieService.plusMovie(movieForm, id, imageFile); // 이 아이디는 멤버의 아이디여야함
         //log.info(movie.toString());
-        List<MovieForm> movieForms = movieService.getList();
+        List<MovieForm> movieForms = movieService.getList(id);
         model.addAttribute("MovieDtos", movieForms);
         return "redirect:/getlist/" + id;
     }

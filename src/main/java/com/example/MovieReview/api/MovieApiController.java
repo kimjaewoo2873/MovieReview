@@ -27,7 +27,7 @@ public class MovieApiController {
             @RequestPart("imageFile") MultipartFile imageFile) {
 
         Movie movie = movieService.plusMovie(movieForm, id, imageFile);
-        List<MovieForm> dtos = movieService.getList();
+        List<MovieForm> dtos = movieService.getList(id);
         return (dtos != null) ?
                 ResponseEntity.status(HttpStatus.OK).body(dtos) :
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
