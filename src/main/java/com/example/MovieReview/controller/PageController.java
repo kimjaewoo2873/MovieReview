@@ -96,9 +96,10 @@ public class PageController {
         return "home/edit";
     }
 
-    @PostMapping("/movie/edit/{viewerId}")
-    public String editMovie(@PathVariable Long viewerId, MovieForm movieForm) {
-        MovieForm edit = movieService.editMovie(movieForm);
+    @PostMapping("/movie/edit/{movieId}/{viewerId}")
+    public String editMovie(@PathVariable Long movieId,@PathVariable Long viewerId, MovieForm movieForm) {
+        MovieForm target = movieService.findId(movieId, viewerId);
+        movieService.editMovie(target, movieForm);
 
         return "redirect:/getlist/" + viewerId;
     }

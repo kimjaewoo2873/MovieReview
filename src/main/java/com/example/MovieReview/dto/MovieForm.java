@@ -36,6 +36,13 @@ public class MovieForm {
                 m.getCompany(), isWriter);
     }
 
+    public static void editMovieInfo(MovieForm target, MovieForm editMovie) {
+        if(!target.getTitle().equals(editMovie.getTitle())) {
+           target.getTitle() = editMovie.getTitle();
+        }
+    }
+
+
     public Movie toEntity(Member member) {
         log.info("현재 추가된 무비 this.id = " + this.id);
         return new Movie(null, member, this.title, this.score, this.imageUrl, this.infoText, this.openDay, this.limitAge,
@@ -44,5 +51,5 @@ public class MovieForm {
 
     public void setIsWrite(boolean isWrite) {
         this.isWrite = isWrite;
-    }
+    } // 수정을 위한, 작성자 찾기
 }

@@ -3,7 +3,7 @@
         <h2 class="text-left text-dark m-0">🎥 영화 등록</h2>
     </div>
 {{#editMovie}}
-    <form class="container mt-4" action="/movie/edit/{{viewerId}}" method="post" enctype="multipart/form-data">
+    <form class="container mt-4" action="/movie/edit/{{id}}/{{viewerId}}" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label">제목</label>
             <input type="text" class="form-control" name="title" style="width: 300px;" value="{{title}}">

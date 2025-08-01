@@ -122,7 +122,8 @@ public class MovieService {
         }
     }
 
-    public MovieForm editMovie(MovieForm movieForm) {
+    public void editMovie(MovieForm target, MovieForm editMovie) {
+        MovieForm.editMovieInfo(target, editMovie);
 
     }
 }
