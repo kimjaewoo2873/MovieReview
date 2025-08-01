@@ -85,4 +85,21 @@ public class PageController {
         model.addAttribute("viewerId", viewerId); // 이걸 목록 돌아가기 버튼에서 활용!
         return "home/movieinfo";
     }
+
+    @GetMapping("/edit/{movieId}") // edit 페이지
+    public String editMovieInfo(@PathVariable Long movieId,
+                            @RequestParam(name = "viewerId", required = false) Long viewerId,
+                            Model model) {
+        MovieForm dto = movieService.findId(movieId, viewerId);
+        model.addAttribute("editMovie", dto);
+        model.addAttribute("viewerId", viewerId);
+        return "home/edit";
+    }
+
+    @PostMapping("/movie/edit/{viewerId}")
+    public String editMovie(@PathVariable Long viewerId, MovieForm movieForm) {
+        MovieForm edit = movieService.editMovie(movieForm);
+
+        return "redirect:/getlist/" + viewerId;
+    }
 }

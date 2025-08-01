@@ -121,4 +121,8 @@ public class MovieService {
             }
         }
     }
+
+    public MovieForm editMovie(MovieForm movieForm) {
+
+    }
 }

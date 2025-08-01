@@ -1,0 +1,51 @@
+{{>layouts/header}}
+    <div class="bg-light p-3 rounded shadow-sm mb-4">
+        <h2 class="text-left text-dark m-0">🎥 영화 등록</h2>
+    </div>
+{{#editMovie}}
+    <form class="container mt-4" action="/movie/edit/{{viewerId}}" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label">제목</label>
+            <input type="text" class="form-control" name="title" style="width: 300px;" value="{{title}}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">평점</label>
+            <input class="form-control" name="score" style="width: 60px;" maxlength="4" value="{{score}}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">개봉일</label>
+            <input type="text" class="form-control" name="openDay" style="width: 300px;" value="{{openDay}}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">등급</label>
+            <input type="text" class="form-control" name="limitAge" style="width: 300px;" value="{{limitAge}}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">장르</label>
+            <input type="text" class="form-control" name="genre" style="width: 300px;" value="{{genre}}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">국가</label>
+            <input type="text" class="form-control" name="country" style="width: 300px;" value="{{country}}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">러닝타임</label>
+            <input type="text" class="form-control" name="runningTime" style="width: 300px;" value="{{runningTime}}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">배급</label>
+            <input type="text" class="form-control" name="company" style="width: 300px;" value="{{company}}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">이미지 업로드</label>
+            <input type="file" class="form-control" name="imageFile" accept="image/*" style="width: 300px;">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">상세 정보</label>
+            <textarea class="form-control" name="infoText" rows="5" style="width: 300px;">{{infoText}}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">등록</button>
+        <a href="/getlist/{{viewerId}}">돌아가기</a>
+    </form>
+{{/editMovie}}
+{{>layouts/footer}}

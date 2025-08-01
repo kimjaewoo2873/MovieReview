@@ -20,7 +20,7 @@
             <td class="align-middle">⭐{{score}}</td>
         <td class="align-middle">
             {{#isWrite}}
-                <a href="/?/{{MemberDto.id}}" class="text-decoration-none">{{memberName}}</a>
+                <a href="/edit/{{id}}?viewerId={{MemberDto.id}}" class="btn btn-success">{{memberName}}</a>
             {{/isWrite}}
             {{^isWrite}}
                 {{memberName}}
